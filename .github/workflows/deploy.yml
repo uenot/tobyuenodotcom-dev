@@ -9,12 +9,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: checkout
+        uses: actions/checkout@v4
+          with:
+            repository: tobyuenodotcom
+            ref: dev
+            
+      - name: build
+        uses: jorelali/setup-elm@v5
+        with:
+          elm-version: 0.19.1
+      - run: elm make src/Main.elm
 
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: pages-setup
+        uses: actions/configure-pages@v3
+
+      - name: upload
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: '.'
+          
+      - name: pages-deploy
+        id: deployment
+        uses: actions/deploy-pages@v2

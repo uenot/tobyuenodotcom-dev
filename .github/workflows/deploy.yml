@@ -26,7 +26,7 @@ jobs:
       - name: node-download
         uses: actions/setup-node@v4
         with:
-          node-version-file: 'tobyuenodotcom/package.json'
+          node-version-file: 'package.json'
 
       - name: ci
         run: npm ci

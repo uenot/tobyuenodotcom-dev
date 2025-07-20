@@ -23,11 +23,16 @@ jobs:
           repository: uenot/tobyuenodotcom
           ref: dev
             
-      - name: build
-        uses: jorelali/setup-elm@v5
+      - name: node-download
+        uses: actions/setup-node@v4
         with:
-          elm-version: 0.19.1
-      - run: elm make src/Main.elm
+          node-version-file: 'tobyuenodotcom/package.json'
+
+      - name: ci
+        run: npm ci
+
+      - name: build
+        run: npm run build
 
       - name: pages-setup
         uses: actions/configure-pages@v3
@@ -35,7 +40,7 @@ jobs:
       - name: upload
         uses: actions/upload-pages-artifact@v1
         with:
-          path: '.'
+          path: './dist'
           
       - name: pages-deploy
         id: deployment

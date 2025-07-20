@@ -23,7 +23,7 @@ jobs:
           repository: uenot/tobyuenodotcom
           ref: dev
 
-      - name: ls
+      - name: ls2
         run: ls
             
       - name: node-download

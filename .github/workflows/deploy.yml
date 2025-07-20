@@ -23,9 +23,6 @@ jobs:
           repository: uenot/tobyuenodotcom
           ref: dev
 
-      - name: ls2
-        run: ls
-            
       - name: node-download
         uses: actions/setup-node@v4
         with:
